@@ -381,7 +381,7 @@ void master_fuzzer_thread ()
 		while (1)
 		{
 			usleep(20000);
-			if ((threads_running_get() < OPTIONS_THREADS_N) || (get_threadsafe_int(&master_thread_abort)))
+			if ((threads_running_get() < get_threadsafe_int(&OPTIONS_THREADS_N)) || (get_threadsafe_int(&master_thread_abort)))
 				break;
 		}
 		
