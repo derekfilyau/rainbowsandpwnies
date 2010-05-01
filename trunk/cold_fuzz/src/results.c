@@ -72,6 +72,8 @@ void results_remove_first ()
 	                                       + ((int64_t) strlen(hostname))
 	                                       + ((int64_t) sizeof(gint) * 3)
 	                                       + ((int64_t) sizeof(gpointer) * 2));
+	                                       
+	results_update_status_bar();
 	
 	free(data_sent_pointer);
 	free(data_recv_pointer);
