@@ -257,36 +257,6 @@ gboolean key_press (GtkWidget * window, GdkEventKey * pKey, gpointer userdata)
 
 
 
-char * replace_newlines (char * data)
-{
-
-	int data_i, new_data_i;
-	char * new_data;
-	
-	new_data = (char *) malloc(strlen(data) * 2);
-	if (new_data == NULL)
-	{
-		debug_text_out("malloc for replacement failed\n");
-		return NULL;
-	}
-	memset(new_data, 0, strlen(data) * 2);
-	
-	new_data_i = 0;
-	for (data_i = 0; data_i < strlen(data); data_i++)
-	{
-		if (data[data_i] == '\n')
-		{
-			new_data[new_data_i++] = '\r';
-			new_data[new_data_i++] = '\n';
-		}
-		else
-			new_data[new_data_i++] = data[data_i];
-	}
-	return new_data;
-}
-
-
-
 // function for convenience when we have to abort master_fuzzer_thread early
 void master_fuzzer_thread_early_abort ()
 {
@@ -335,13 +305,6 @@ void master_fuzzer_thread ()
 	gdk_threads_enter();
 	input = get_text_from_textview("text_input");
 	gdk_threads_leave();
-	
-	if (OPTIONS & OPTIONS_NEWLINE)
-	{
-		debug_text_out("replacing \\n with \\r\\n\n");
-		master_fuzzer_thread_early_abort();
-		input = replace_newlines(input);
-	}
 	
 	#if DEBUG_MAIN == 1
 		printf("creating fuzzer_engine\n");
@@ -440,9 +403,6 @@ void master_fuzzer_thread ()
 		set_status_bar("status_threads", status_text);
 		gdk_threads_leave();
 	}
-	
-	if (OPTIONS & OPTIONS_NEWLINE)
-		free(input);
 	
 	fuzzer_engine_destroy(engine);
 	
