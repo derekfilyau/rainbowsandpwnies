@@ -9,12 +9,11 @@
 #define OPTIONS_NEWLINE (1 << 0)
 
 unsigned int OPTIONS;
-int OPTIONS_LINES_DELAY_SECONDS;
-int OPTIONS_THREADS_N;
+threadsafe_int_t OPTIONS_THREADS_N;
 threadsafe_int_t OPTIONS_RANDOM_BYTES;
 threadsafe_int_t OPTIONS_MIN_LENGTH_RANDOM_BYTES;
 threadsafe_int_t OPTIONS_MAX_LENGTH_RANDOM_BYTES;
-int OPTIONS_RESULTS_MAX;
+threadsafe_int_t OPTIONS_RESULTS_MAX;
 
 
 

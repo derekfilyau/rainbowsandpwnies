@@ -123,10 +123,10 @@ void results_append (int thread_id, char * hostname, int bytes_sent, int bytes_r
 	
 	add_threadsafe_int(&results_max, 1);
 	// if we have too many items in list, get rid of one
-	if (get_threadsafe_int(&results_max) > OPTIONS_RESULTS_MAX)
+	if (get_threadsafe_int(&results_max) > get_threadsafe_int(&OPTIONS_RESULTS_MAX))
 		results_remove_first();
 		
-	if (OPTIONS_RESULTS_MAX == 0)
+	if (get_threadsafe_int(&OPTIONS_RESULTS_MAX) == 0)
 		return;
 	
 	data_sent_pointer = (unsigned char *) malloc(bytes_sent);
