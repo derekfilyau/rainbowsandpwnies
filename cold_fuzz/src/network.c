@@ -105,46 +105,19 @@ int network_connect (char * hostname, char * port, struct network_info ** info_a
 int network_send (struct network_info * info, unsigned char * data, int data_len)
 {
 
-	//int i;
 	int data_sent = 0;
-	//int bytes_to_send = 0;
 	int bytes_sent = 0;
 	
 	char tmp[128];
 	
-	int bytes_to_send = data_len;
 	while (data_sent < data_len)
 	{
-	
-		/*
-		if (bytes_to_send == 0)
-		{
-			if (OPTIONS_LINES_DELAY_SECONDS > 0)
-			{
-				sleep(OPTIONS_LINES_DELAY_SECONDS);
-				for (i = data_sent; i < data_len; i++)
-				{
-					if (data[i] == '\n')
-					{
-						bytes_to_send = i - data_sent + 1;
-						break;
-					}
-				}
-			}
-			else
-				bytes_to_send = data_len;
-		}
-		*/
 		
-		bytes_sent = send(info->sock, &(data[data_sent]), bytes_to_send, 0);
+		bytes_sent = send(info->sock, &(data[data_sent]), data_len - data_sent, 0);
 		if (bytes_sent == -1)
 		{
-			#if DEBUG_NETWORK == 1	
-				printf("sending data_sent: %d, bytes_to_send: %d, data_len: %d, data: %s\n", data_sent, bytes_to_send, data_len, data);
-			#endif
 			return FUZZER_ERROR_SOCKET_CLOSED_ON_SEND;
 		}
-		bytes_to_send -= bytes_sent;
 		data_sent += bytes_sent;
 	}
 	
