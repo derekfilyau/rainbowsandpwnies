@@ -89,7 +89,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">&#x25CF;</property>
-                <property name="text" translatable="yes">134.240.100.58</property>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -109,7 +108,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">&#x25CF;</property>
-                <property name="text" translatable="yes">21</property>
               </object>
               <packing>
                 <property name="position">3</property>
@@ -276,6 +274,7 @@
                   <object class="GtkTreeView" id="tree_results">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="model">sort_results</property>
                     <property name="search_column">0</property>
                     <child>
                       <object class="GtkTreeViewColumn" id="column_thread_id">
