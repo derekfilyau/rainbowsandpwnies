@@ -1,0 +1,111 @@
+RELEASE: alpha_one
+LICENSE: GNU/GPL3
+CONTACT: endeavormac@gmail.com
+
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+/**************************************
+*                                      *
+*  BBBB   U    U  IIIII  L      DDDD   *
+*  B   B  U    U    I    L      D   D  *
+*  BBBB   U    U    I    L      D   D  *
+*  B   B  U    U    I    L      D   D  *
+*  BBBB    UUUU   IIIII  LLLLL  DDDD   *
+*                                      *
+ **************************************/
+
+Dependencies:
+	openmp
+		If you do not want openmp support, change RMM_OPENMPI to 0 in rmm.c
+		The package name for openmp in ubuntu is libopenmpi-dev
+
+Linux:
+	Run build.sh. The compiled binaries will be in bin/
+	
+
+/**********************************************************
+*                                                          *
+*  TTTTT  U   U  TTTTT   OOO   RRRR   IIIII    A    L      *
+*    T    U   U    T    O   O  R   R    I     A A   L      *
+*    T    U   U    T    O   O  RRRR     I    AAAAA  L      *
+*    T    U   U    T    O   O  R  R     I    A   A  L      *
+*    T     UUU     T     OOO   R   R  IIIII  A   A  LLLLL  *
+*                                                          *
+ **********************************************************/
+ 
+First, you need to build some tables. rmm is a utility to build perfect
+rainbow tables, as outlines in this post:
+
+http://myw3b.net/blog/index.php/2010/03/making-perfect-rainbow-tables-faster/
+
+This method requires a lot of memory. You will need twice the size of your
+final tables in memory. It is a good idea to compile with openmp support and
+use all available CPUs on one table, instead of trying to build multiple tables
+at once.
+
+Chains have a size of 20 bytes. Your tables will be num_chains * 20 bytes
+in size.
+
+For this example, we will create one table with the following characteristics:
+filename: ------- demo_table
+hash function: -- nt
+charset: -------- abcdefghijklmnopqrstuvwxyz
+plaintext_length: 5
+chain_size: ----- 2048
+num_chains: ----- 10000
+table: ---------- 0
+
+~/rc$ bin/rmm demo_table nt az 5 2048 10000 0
+
+Now we will search for the nt hash of "hello" in demo_table.
+nt_hash("hello") = 066ddfd4ef0e9cd7c256fe77191ef43c
+
+~/rc$ bin/rc demo_table nt az 5 2048 0 066ddfd4ef0e9cd7c256fe77191ef43c
+
+The following output is displayed:
+chain.chain 0	chain.plaintext_length 5
+chain.table 0	chain.chain_size 2048
+starting hash 066ddfd4ef0e9cd7c256fe77191ef43c
+generating chains... done
+merge_sort... done
+search for hash
+found in chain 1332 :hello
+
+
+
+bin/rm is a utility to build rainbow tables the original way. Since the change in
+how hash functions work, it does not work anymore. DOES NOT WORK!!!
+
+bin/ru tells you how many unique chains there are in a sorted table
+
+bin/rs sorts a table (in memory, not for large tables)
+
+bin/rsm sorts two different tables, eliminating merges BETWEEN the two tables 
+(not within individual tables themselves), and writes the result to the
+outfile. The two different tables must be from the same table set.
+
+bin/rss goes through a sorted table, and outputs chains which are not
+duplicates to the outfile (IE eliminate duplicates from a sorted table)
+
+bin/rsc combines multiple sorted tables into one table, eliminating duplicates
+between tables (but within individual tables). Good for combining result of
+rmm. This is the newer, better rsm... combine more at once.
+
+bin/rsp splits a large file in to several smaller files. Good for sending
+combining several tables of one stage together to eliminate merges, and then
+splitting into pieces for sending back out for further extending.
+
+bin/rc2 is a superior rc. Use rc2 instead of rc from now on.
