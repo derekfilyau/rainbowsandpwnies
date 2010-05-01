@@ -1,0 +1,16 @@
+#summary Outlines the goals of the firemaster linux project
+
+= Introduction =
+
+When/if you save a password with Firefox, it saves them in a totally visible database (click 'Show Passwords,' and all your passwords are visible in plaintext).  One of the protection measures is a "master password," which means you have to type in that password to access that database.
+
+The tool FireMaster, written in C++ by Nagareshwar Talekar, is a bruteforce/dictionary/hybrid cracking mechanism for this password, and is currently only for Windows.
+
+= Details =
+
+To do:
+  * Port a working version (brute force only) to linux
+  * Incorporate hybrid and dictionary crack
+  * Write a metasploit module to grab requisite databases
+  * Refine
+  * Profit? :P
