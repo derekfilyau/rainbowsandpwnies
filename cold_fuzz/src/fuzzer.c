@@ -662,8 +662,18 @@ int fuzzer_token_ascii_execute (fuzzer_token_ascii_t * ascii, unsigned char ** r
 	int i;
 	int strlen_fuzzer_ascii_chars;
 	
-	*length = (int) rand() % (ascii->max_length - ascii->min_length);
-	*length += ascii->min_length;
+	if (ascii->max_length - ascii->min_length <= 0)
+	{
+		if (ascii->min_length <= 0)
+			*length = 0;
+		else
+			*length = ascii->min_length;
+	}
+	else
+	{
+		*length = (int) rand() % (ascii->max_length - ascii->min_length);
+		*length += ascii->min_length;
+	}
 	
 	*result = (unsigned char *) malloc(*length);
 	if (result == NULL)
@@ -746,9 +756,19 @@ int fuzzer_token_byte_execute (fuzzer_token_byte_t * byte, unsigned char ** resu
 {
 	
 	int i;
-	
-	*length = (int) rand() % (byte->max_length - byte->min_length);
-	*length += byte->min_length;
+
+	if (byte->max_length - byte->min_length <= 0)
+	{
+		if (byte->min_length <= 0)
+			*length = 0;
+		else
+			*length = byte->min_length;
+	}
+	else
+	{
+		*length = (int) rand() % (byte->max_length - byte->min_length);
+		*length += byte->min_length;
+	}
 	
 	*result = (unsigned char *) malloc(*length);
 	if (result == NULL)
