@@ -18,6 +18,7 @@ char * get_text_from_textview (char * textview_name);
 void set_status_bar (char * statusbar_name, char * text);
 void clear_textview(char * textview_name);
 char * get_textbox_text (char * textbox_name);
+void set_entry_text (char * entry_name, char * text);
 
 
 

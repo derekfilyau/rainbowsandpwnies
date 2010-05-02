@@ -123,3 +123,15 @@ char * get_textbox_text (char * textbox_name)
 	return (char *) gtk_entry_get_text(GTK_ENTRY(object));
 	
 }
+
+
+
+void set_entry_text (char * entry_name, char * text)
+{
+
+	GObject * object;
+
+	object = get_ui_object(entry_name);
+	gtk_entry_set_text(GTK_ENTRY(object), (const gchar *) text);
+
+}
