@@ -34,13 +34,13 @@ threadsafe_int_t results_max;
 threadsafe_int64_t results_memory;
 
 
-void results_init ();
-void results_remove_first ();
-void results_row_activated (GtkTreeView * tree_view, GtkTreePath * tree_path, GtkTreeViewColumn * column, gpointer user_data);
-void results_append (int thread_id, char * hostname, int bytes_sent, int bytes_recv, unsigned char * data_sent, char * data_recv);
-gint results_compare_rows (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer useradata);
-void results_update_status_bar ();
-void results_test ();
+void     results_init              ();
+void     results_remove_first      ();
+gboolean results_row_button_press  (GtkTreeView * tree_view, GdkEventButton * event, gpointer user_data);
+void     results_append            (int thread_id, char * hostname, int bytes_sent, int bytes_recv, unsigned char * data_sent, char * data_recv);
+gint     results_compare_rows      (GtkTreeModel * model, GtkTreeIter * a, GtkTreeIter * b, gpointer useradata);
+void     results_update_status_bar ();
+void     results_test              ();
 
 
 #endif
