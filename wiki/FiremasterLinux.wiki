@@ -11,6 +11,7 @@ The tool FireMaster, written in C++ by Nagareshwar Talekar, is a bruteforce/dict
 To do:
   * Port a working version (brute force only) to linux
   * Incorporate hybrid and dictionary crack
+  * Roll into Nagareshwar's FirePassword tool
   * Write a metasploit module to grab requisite databases
   * Refine
   * Profit? :P
