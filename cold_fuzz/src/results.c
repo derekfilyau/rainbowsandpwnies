@@ -9,7 +9,7 @@ void results_init ()
 	set_threadsafe_int64(&results_memory, 0);
 	
 	object = get_ui_object("tree_results");
-	g_signal_connect(object, "row-activated", G_CALLBACK(results_row_activated), NULL);
+	g_signal_connect(object, "button-press-event", G_CALLBACK(results_row_button_press), NULL);
 	
 	object = get_ui_object("sort_results");
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(object), COLUMN_THREAD_ID, results_compare_rows, GINT_TO_POINTER(COLUMN_THREAD_ID), NULL);
@@ -82,31 +82,46 @@ void results_remove_first ()
 
 
 
-void results_row_activated (GtkTreeView * tree_view, GtkTreePath * tree_path, GtkTreeViewColumn * column, gpointer user_data)
+gboolean results_row_button_press (GtkTreeView * tree_view, GdkEventButton * event, gpointer user_data) //GtkTreePath * tree_path, GtkTreeViewColumn * column, gpointer user_data)
 {
 
 	GtkTreeModel * tree_model;
-	GtkTreeIter iter;
+	GtkTreePath * path;
+	GtkTreeIter tree_iter;
+	GtkTreeSelection * tree_selection;
 	
 	int bytes_sent;
 	int bytes_recv;
 	char * data_sent;
 	char * data_recv;
+
+	tree_selection = gtk_tree_view_get_selection(tree_view);
 	
-	tree_model = gtk_tree_view_get_model(tree_view);
-	if (gtk_tree_model_get_iter(tree_model, &iter, tree_path))
+	if (gtk_tree_selection_count_selected_rows(tree_selection) <= 1)
 	{
-		gtk_tree_model_get(tree_model, &iter,
-		                   COLUMN_BYTES_SENT, &bytes_sent,
-		                   COLUMN_BYTES_RECV, &bytes_recv,
-		                   COLUMN_DATA_SENT, &data_sent,
-		                   COLUMN_DATA_RECV, &data_recv,
-		                   -1);
-		clear_textview("text_sent");
-		clear_textview("text_recv");
-		append_bytes_to_textview("text_sent", data_sent, bytes_sent);
-		append_bytes_to_textview("text_recv", data_recv, bytes_recv);
+
+		if (gtk_tree_view_get_path_at_pos(tree_view, (gint) event->x, (gint) event->y, &path, NULL, NULL, NULL))
+		{
+			gtk_tree_selection_unselect_all(tree_selection);
+			gtk_tree_selection_select_path(tree_selection, path);
+			gtk_tree_path_free(path);
+		}
+		if (gtk_tree_selection_get_selected(tree_selection, &tree_model, &tree_iter))
+		{	
+			gtk_tree_model_get(tree_model, &tree_iter,
+				               COLUMN_BYTES_SENT, &bytes_sent,
+				               COLUMN_BYTES_RECV, &bytes_recv,
+				               COLUMN_DATA_SENT, &data_sent,
+				               COLUMN_DATA_RECV, &data_recv,
+				               -1);
+			clear_textview("text_sent");
+			clear_textview("text_recv");
+			append_bytes_to_textview("text_sent", data_sent, bytes_sent);
+			append_bytes_to_textview("text_recv", data_recv, bytes_recv);
+		}
 	}
+
+	return TRUE;
 	
 }
 		
