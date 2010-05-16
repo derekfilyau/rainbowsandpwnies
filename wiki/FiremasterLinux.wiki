@@ -16,6 +16,11 @@ To do:
   * Refine
   * Profit? :P
 
+= UPDATE 16 MAY 2010 =
+  * Turns out the libraries in earlier revisions may have been dated (Thanks to Nagareshwar for pointing that out) : to remedy this, please download the latest gecko SDK at http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
+  * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
+
+
 
 
 Please join the discussion at our website:
