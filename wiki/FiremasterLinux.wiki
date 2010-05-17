@@ -1,4 +1,5 @@
-#summary Outlines the goals of the firemaster linux project
+#summary Outlines the goals and tracks milestones of the project
+#labels Featured
 
 = Introduction =
 
@@ -9,18 +10,17 @@ The tool FireMaster, written in C++ by Nagareshwar Talekar, is a bruteforce/dict
 = Details =
 
 To do:
-  * Port a working version (brute force only) to linux
+  * Port a working version (brute force only) to linux [Completed 16 MAY 2010]
   * Incorporate hybrid and dictionary crack
+  * Clean up the code
   * Roll into Nagareshwar's FirePassword tool
+  * Use with CUDA/OpenCL
   * Write a metasploit module to grab requisite databases
-  * Refine
-  * Profit? :P
 
-= UPDATE 16 MAY 2010 =
-  * Turns out the libraries in earlier revisions may have been dated (Thanks to Nagareshwar for pointing that out) : to remedy this, please download the latest gecko SDK at http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
+= LATEST UPDATES =
+  * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
   * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
-
-
+  * BruteForce Cracking for Firefox 3.6.x is now working
 
 
 Please join the discussion at our website:
