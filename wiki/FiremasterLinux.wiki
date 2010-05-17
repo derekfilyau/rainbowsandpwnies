@@ -3,13 +3,18 @@
 
 = Introduction =
 
-When/if you save a password with Firefox, it saves them in a totally visible database (click 'Show Passwords,' and all your passwords are visible in plaintext).  One of the protection measures is a "master password," which means you have to type in that password to access that database.
+FireMasterLinux is the Linux port of popular of FireMaster <put the link to firemaster here> tool created by Nagareshwar Talekar. FireMaster is the first ever built tool to recover the lost master password of Firefox. In order to protect the stored login passwords, Firefox uses master password. If the master password is forgotten, then there is no way to recover the master password and user will lose all the stored login passwords as well.
 
-The tool FireMaster, written in C++ by Nagareshwar Talekar, is a bruteforce/dictionary/hybrid cracking mechanism for this password, and is currently only for Windows.
+In this direction, FireMaster helps in recovering lost master password to get back all the stored passwords. FireMaster uses combination of techniques such as dictionary, hybrid and brute force to recover the master password from the Firefox key database file.
 
-= Details =
+Often it takes long hours and some times days together to completely recover the master password based on its length and complexity. Hence one end up performing recovery operation for days continuously. However Windows system often goes slower as the day passes and performance is not optimal when it comes to continuous processing.
 
-To do:
+In such a case where it involves processing for long hours with consistent high-performance, Linux becomes the ideal platform. To address this exact problem, we have started the project, FireMasterLinux....!
+
+
+Curently project is under development and progress of the same will be updated on this page periodically.  If you would like to join hands in this project, please drop us a line at broseidon@blackopsecurity.com, or join the discussion on the forums at http://www.rainbowsandpwnies.com/forums/
+
+= To do: = 
   * Port a working version (brute force only) to linux [Completed 16 MAY 2010]
   * Incorporate hybrid and dictionary crack
   * Clean up the code
@@ -23,6 +28,5 @@ To do:
   * BruteForce Cracking for Firefox 3.6.x is now working
 
 
-Please join the discussion at our website:
 
-http://rainbowsandpwnies.com/forums/viewtopic.php?f=7&t=5
+http://rainbowsandpwnies.com/forums/
