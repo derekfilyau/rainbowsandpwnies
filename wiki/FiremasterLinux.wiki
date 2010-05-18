@@ -14,6 +14,11 @@ In such a case where it involves processing for long hours with consistent high-
 
 Curently project is under development and progress of the same will be updated on this page periodically.  If you would like to join hands in this project, please drop us a line at broseidon@blackopsecurity.com, or join the discussion on the forums at http://www.rainbowsandpwnies.com/forums/
 
+= Team Members =
+ * broseidon
+ * endeavormac
+ * oldgregg
+
 = To do: = 
   * Port a working version (brute force only) to linux [Completed 16 MAY 2010]
   * Incorporate hybrid and dictionary crack
