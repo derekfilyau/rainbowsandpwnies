@@ -3,7 +3,7 @@
 
 = Introduction =
 
-FireMasterLinux is the Linux port of popular of FireMaster <put the link to firemaster here> tool created by Nagareshwar Talekar. FireMaster is the first ever built tool to recover the lost master password of Firefox. In order to protect the stored login passwords, Firefox uses master password. If the master password is forgotten, then there is no way to recover the master password and user will lose all the stored login passwords as well.
+FireMasterLinux is the Linux port of popular of FireMaster (http://securityxploded.com/tools.php#FireMaster) tool created by Nagareshwar Talekar. FireMaster is the first ever built tool to recover the lost master password of Firefox. In order to protect the stored login passwords, Firefox uses master password. If the master password is forgotten, then there is no way to recover the master password and user will lose all the stored login passwords as well.
 
 In this direction, FireMaster helps in recovering lost master password to get back all the stored passwords. FireMaster uses combination of techniques such as dictionary, hybrid and brute force to recover the master password from the Firefox key database file.
 
