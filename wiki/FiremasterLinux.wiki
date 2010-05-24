@@ -1,6 +1,12 @@
 #summary Outlines the goals and tracks milestones of the project
 #labels Featured
 
+= LATEST UPDATES =
+  * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
+  * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
+
+Read more at http://www.rainbowsandpwnies.com/forums/
+
 = Introduction =
 
 FireMasterLinux is the Linux port of popular of FireMaster (http://securityxploded.com/tools.php#FireMaster) tool created by Nagareshwar Talekar. FireMaster is the first ever built tool to recover the lost master password of Firefox. In order to protect the stored login passwords, Firefox uses master password. If the master password is forgotten, then there is no way to recover the master password and user will lose all the stored login passwords as well.
@@ -28,10 +34,4 @@ Curently project is under development and progress of the same will be updated o
   * Use with CUDA/OpenCL
   * Write a metasploit module to grab requisite databases
 
-= LATEST UPDATES =
-  * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
-  * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
-
-
-
-http://rainbowsandpwnies.com/forums/
+http://www.rainbowsandpwnies.com/forums/
