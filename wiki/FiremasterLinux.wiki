@@ -21,7 +21,8 @@ Curently project is under development and progress of the same will be updated o
 
 = To do: = 
   * Port a working version (brute force only) to linux [Completed 16 MAY 2010]
-  * Incorporate hybrid and dictionary crack
+  * Incorporate dictionary crack [Completed 24 MAY 2010]
+  * Incorporate and optimize hybrid crack to include not just addition, but case changes within dictionary words 
   * Clean up the code
   * Roll into Nagareshwar's FirePassword tool
   * Use with CUDA/OpenCL
@@ -30,7 +31,6 @@ Curently project is under development and progress of the same will be updated o
 = LATEST UPDATES =
   * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
   * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
-  * BruteForce Cracking for Firefox 3.6.x is now working
 
 
 
