@@ -2,6 +2,7 @@
 #labels Featured
 
 = LATEST UPDATES =
+  * Function call notes for CUDA implementation have been posted in Issue #6 
   * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
   * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
 
