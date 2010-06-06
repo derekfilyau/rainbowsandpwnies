@@ -515,6 +515,16 @@ fuzzer_token_t * fuzzer_token_create (fuzzer_token_parser_t * parser, int locati
 		token->token = (void *) fuzzer_token_file_create(parser);
 	}
 	
+	#if FUZZER_DEBUG == 1
+		if (token->token == NULL)
+			printf("this is a big fucking sign\n");
+	#endif
+	if (token->token == NULL)
+	{
+		fuzzer_token_destroy(token);
+		return NULL;
+	}
+	
 	return token;
 
 }
