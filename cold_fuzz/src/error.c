@@ -40,7 +40,9 @@ char * fuzzer_error_string (int error)
 		case FUZZER_ERROR_HOST_UNREACHABLE :
 			return "HOST UNREACHABLE";
 		default :
-			return "UNKNOWN ERROR";
+			memset(FUZZER_ERROR_CUSTOM, 0, 256);
+			snprintf(FUZZER_ERROR_CUSTOM, 256, "UNKNOWN ERROR %d\n", error);
+			return FUZZER_ERROR_CUSTOM;
 	}
 
 }

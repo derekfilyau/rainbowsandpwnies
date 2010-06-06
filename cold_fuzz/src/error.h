@@ -2,6 +2,7 @@
 #define error_HEADER
 
 #include <string.h>
+#include <stdio.h>
 
 // from main.c
 #define FUZZER_ERROR_THREAD_MALLOC_FAIL 1
