@@ -1,4 +1,4 @@
-#summary Outlines the goals and tracks milestones of the project
+#summary A port and optimization of the tool FireMaster, written for Windows by Nagareshwar Talekar
 #labels Featured
 
 = LATEST UPDATES =
