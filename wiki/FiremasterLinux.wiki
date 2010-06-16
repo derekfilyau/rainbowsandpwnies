@@ -2,6 +2,7 @@
 #labels Featured
 
 = LATEST UPDATES =
+  * POSIX threads will be used for threading
   * Function call notes for CUDA implementation have been posted in Issue #6 
   * Make sure you download the latest gecko SDK before compiling : http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.2/sdk/xulrunner-1.9.2.en-US.linux-i686.sdk.tar.bz2
   * Make sure to modify the Makefile accordingly (point XUL_INCLUDE and XUL_LIB variables to the directory you installed gecko in)
@@ -31,9 +32,8 @@ Curently project is under development and progress of the same will be updated o
   * Port a working version (brute force only) to linux [Completed 16 MAY 2010]
   * Incorporate dictionary crack [Completed 24 MAY 2010]
   * Incorporate and optimize hybrid crack to include not just addition, but case changes within dictionary words [Completed 9 JUN 2010]
-  * Clean up the code
+  * Use threading to improve application performance 
   * Use with CUDA/OpenCL
-  * Parallelize using the RNP cluster node
   * Roll into Nagareshwar's FirePassword tool
   * Write a Metasploit module to grab requisite databases & automatically check for a master password set
 
