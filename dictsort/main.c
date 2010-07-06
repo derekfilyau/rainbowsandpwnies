@@ -37,6 +37,8 @@ word_list_t * load_word_list (char * filename)
 
 	int entries;
 	size_t word_size;
+	char * tmp_word;
+	
 	FILE * fh;
 	word_list_t * word_list, * next;
 
@@ -67,11 +69,31 @@ word_list_t * load_word_list (char * filename)
 		}
 		
 		word_size = 0;
-		next->word = (char *) malloc(6);
-		word_size = 6;
+		
+		// we readline into tmp_word, and then malloc only the exact
+		// space we need into next->word. This is because getline has a
+		// tendency to malloc arbitrary amounts of memory
+		tmp_word = NULL;
+		word_size = 0;
+		int crap; crap = getline(&tmp_word, &word_size, fh);
+		strip(tmp_word);
+		next->word = (char *) malloc(strlen(tmp_word) + 1);
+		memset(next->word, 0, strlen(tmp_word) + 1);
+		strcpy(next->word, tmp_word);
+		free(tmp_word);
+		entries++;
+		
+		// getline will realloc based on the initial size of the buffer
+		// passed to it. if we originally malloc 5 bytes, getline will realloc
+		// to 10, 15, 20, etc. we start with 1 and allow getline to realloc,
+		// thereby saving us the most memory (gcc 4.4.1)
+		/*
+		next->word = (char *) malloc(1);
+		word_size = 1;
 		int crap; crap = getline(&(next->word), &word_size, fh);
 		strip(next->word);
 		entries++;
+		*/
 		
 		if (entries % 100000 == 0)
 			printf("%d words loaded - %s\n", entries, next->word);
@@ -319,6 +341,33 @@ void write_words (word_list_t * word_list, char * filename)
 }
 
 
+
+void display_optimal_word_order (int64_t followers[256][256])
+{
+
+	int line;
+	char i, j;
+	
+	for (i = 'a'; i <= 'c'; i++)
+	{
+		line = 0;
+		for (j = 'a'; j <= 'z'; j++)
+		{
+			printf("%c[%c]=%08lld   ", i, j, followers[(int)i][(int)j]);
+			line++;
+			if (line == 6)
+			{
+				printf("\n");
+				line = 0;
+			}
+		}
+		printf("\n");
+	}
+	
+}
+
+
+
 int main (int argc, char * argv[])
 {
 
@@ -339,6 +388,8 @@ int main (int argc, char * argv[])
 	
 	printf("calculating optimal word order\n");
 	calculate_word_followers(word_list, followers);
+
+	display_optimal_word_order(followers);
 	
 	printf("sorting words\n");
 	word_list = sort_words(word_list, followers);
